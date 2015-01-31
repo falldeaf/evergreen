@@ -112,7 +112,13 @@ var app = {
             function() { 
                 alert("Bluetooth is *not* enabled");
             }
-        );    
+        );   
+        
+        bluetoothSerial.list(function(objectlist){
+            app.showOutput(JSON.stringify(objectlist));
+        }, function(){
+            app.showOutput("failed to get list");
+        });
         
         
     },
@@ -126,5 +132,10 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+    },
+    
+    showOutput: function(op) {
+        var div = document.getElementById('output');
+        div.innerHTML = div.innerHTML + op;        
     }
 };
