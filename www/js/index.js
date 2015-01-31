@@ -45,5 +45,18 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        
+        bluetoothSerial.connect("0C:1E:08:0F:32:23", this.btConnectSuccess, this.btConnectFailure);
+    },
+    
+    btConnectSuccess: function() {
+        bluetoothSerial.subscribe('\n', function (data) {
+            console.log(data);
+            var div = document.getElementById('output');
+            div.innerHTML = div.innerHTML + data;
+        }, function(){});
+    },
+    
+    btConnectFailure: function() {
     }
 };
