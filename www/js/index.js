@@ -114,11 +114,18 @@ var app = {
             }
         );   
         
-        bluetoothSerial.list(function(objectlist){
+        try {
+            bluetoothSerial.connect("0C:1E:08:0F:32:23", app.btConnectSuccess, app.btConnectFailure);
+        }
+        catch(err) {
+            app.showOutput(err.message);
+        }
+        
+        /*bluetoothSerial.list(function(objectlist){
             app.showOutput(JSON.stringify(objectlist));
         }, function(){
             app.showOutput("failed to get list");
-        });
+        });*/
         
         
     },
@@ -132,6 +139,18 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+    },
+    
+    btConnectSuccess: function() {
+        bluetoothSerial.subscribe('\n', app.newData, app.btConnectFailure);
+    },
+    
+    newData: function(data) {
+        app.showOutput(data);
+    },
+    
+    btConnectFailure: function() {
+        app.showOutput("SHIT");
     },
     
     showOutput: function(op) {
