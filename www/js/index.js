@@ -54,8 +54,16 @@ var app = {
             div.innerHTML = div.innerHTML + "failed to get list";
         });*/
 
-        /*bluetoothSerial.connect("0C:1E:08:0F:32:23", app.btConnectSuccess, app.btConnectFailure);
-        bluetoothSerial.subscribe("\n", app.onmessage, app.generateFailureFunction("Subscribe Failed"));
+        try {
+            bluetoothSerial.connect("0C:1E:08:0F:32:23", app.btConnectSuccess, app.btConnectFailure);
+        }
+        catch(err) {
+            app.showOutput(err.message);
+        }
+        
+        
+        
+        /*bluetoothSerial.subscribe("\n", app.onmessage, app.generateFailureFunction("Subscribe Failed"));
         */
         app.showOutput("test");
 
@@ -75,6 +83,6 @@ var app = {
     
     showOutput: function(op) {
         var div = document.getElementById('output');
-        div.innerHTML = div.innerHTML + "testing!";        
+        div.innerHTML = div.innerHTML + op;        
     }
 };
