@@ -46,28 +46,33 @@ var app = {
 
         console.log('Received Event: ' + id);
         
-        bluetoothSerial.list(function(objectlist){
+        /*bluetoothSerial.list(function(objectlist){
             var div = document.getElementById('output');
             div.innerHTML = div.innerHTML + JSON.stringify(objectlist);
         }, function(){
             var div = document.getElementById('output');
             div.innerHTML = div.innerHTML + "failed to get list";
-        });
+        });*/
 
-        //bluetoothSerial.connect("0C:1E:08:0F:32:23", this.btConnectSuccess, this.btConnectFailure);
-        var div = document.getElementById('output');
-        div.innerHTML = div.innerHTML + "testing!";        
+        bluetoothSerial.connect("0C:1E:08:0F:32:23", app.btConnectSuccess, app.btConnectFailure);
+        app.showOutput("test");
 
     },
     
     btConnectSuccess: function() {
-        bluetoothSerial.subscribe('\n', function (data) {
-            console.log(data);
-            var div = document.getElementById('output');
-            div.innerHTML = div.innerHTML + data;
-        }, function(){});
+        bluetoothSerial.subscribe('\n', app.newData, app.btConnectFailure);
+    },
+    
+    newData: function(data) {
+        app.showOutput(data);
     },
     
     btConnectFailure: function() {
+        app.showOutput("SHIT");
+    },
+    
+    showOutput: function(op) {
+        var div = document.getElementById('output');
+        div.innerHTML = div.innerHTML + "testing!";        
     }
 };
