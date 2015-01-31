@@ -46,9 +46,6 @@ var app = {
 
         console.log('Received Event: ' + id);
         
-        var div = document.getElementById('output');
-        div.innerHTML = div.innerHTML + "testing!";        
-
         bluetoothSerial.list(function(objectlist){
             var div = document.getElementById('output');
             div.innerHTML = div.innerHTML + JSON.stringify(objectlist);
@@ -58,6 +55,9 @@ var app = {
         });
 
         //bluetoothSerial.connect("0C:1E:08:0F:32:23", this.btConnectSuccess, this.btConnectFailure);
+        var div = document.getElementById('output');
+        div.innerHTML = div.innerHTML + "testing!";        
+
     },
     
     btConnectSuccess: function() {
