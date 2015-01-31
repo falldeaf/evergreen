@@ -16,6 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+/*
 var app = {
     // Application Constructor
     initialize: function() {
@@ -46,13 +48,13 @@ var app = {
 
         console.log('Received Event: ' + id);
         
-        /*bluetoothSerial.list(function(objectlist){
+        bluetoothSerial.list(function(objectlist){
             var div = document.getElementById('output');
             div.innerHTML = div.innerHTML + JSON.stringify(objectlist);
         }, function(){
             var div = document.getElementById('output');
             div.innerHTML = div.innerHTML + "failed to get list";
-        });*/
+        });
 
         try {
             bluetoothSerial.connect("0C:1E:08:0F:32:23", app.btConnectSuccess, app.btConnectFailure);
@@ -61,10 +63,6 @@ var app = {
             app.showOutput(err.message);
         }
         
-        
-        
-        /*bluetoothSerial.subscribe("\n", app.onmessage, app.generateFailureFunction("Subscribe Failed"));
-        */
         app.showOutput("test");
 
     },
@@ -84,5 +82,49 @@ var app = {
     showOutput: function(op) {
         var div = document.getElementById('output');
         div.innerHTML = div.innerHTML + op;        
+    }
+};*/
+
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+        
+        // Test Bluetooth Serial Plugin
+        bluetoothSerial.isEnabled(
+            function() { 
+                alert("Bluetooth is enabled");
+            },
+            function() { 
+                alert("Bluetooth is *not* enabled");
+            }
+        );    
+        
+        
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+
+        console.log('Received Event: ' + id);
     }
 };
