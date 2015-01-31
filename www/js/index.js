@@ -54,7 +54,9 @@ var app = {
             div.innerHTML = div.innerHTML + "failed to get list";
         });*/
 
-        bluetoothSerial.connect("0C:1E:08:0F:32:23", app.btConnectSuccess, app.btConnectFailure);
+        /*bluetoothSerial.connect("0C:1E:08:0F:32:23", app.btConnectSuccess, app.btConnectFailure);
+        bluetoothSerial.subscribe("\n", app.onmessage, app.generateFailureFunction("Subscribe Failed"));
+        */
         app.showOutput("test");
 
     },
