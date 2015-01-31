@@ -146,7 +146,12 @@ var app = {
     },
     
     newData: function(data) {
+        app.showOutput(" Newdata!:");
         app.showOutput(data);
+    },
+    
+    lostConnection: function() {
+        app.showOutput("No Carrier");
     },
     
     btConnectFailure: function() {
