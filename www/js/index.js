@@ -46,7 +46,14 @@ var app = {
 
         console.log('Received Event: ' + id);
         
-        bluetoothSerial.connect("0C:1E:08:0F:32:23", this.btConnectSuccess, this.btConnectFailure);
+        bluetoothSerial.list(function(objectlist){
+            var div = document.getElementById('output');
+            div.innerHTML = div.innerHTML + JSON.stringify(objectlist);
+        }, function(){
+            var div = document.getElementById('output');
+            div.innerHTML = div.innerHTML + "failed to get list";
+        });
+        //bluetoothSerial.connect("0C:1E:08:0F:32:23", this.btConnectSuccess, this.btConnectFailure);
     },
     
     btConnectSuccess: function() {
