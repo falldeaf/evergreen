@@ -144,7 +144,7 @@ var app = {
     btConnectSuccess: function() {
         bluetoothSerial.subscribe('\n', app.newData, app.btConnectFailure);
         try {
-            window.plugin.backgroundMode.enable();
+            cordova.plugins.backgroundMode.enable();
         }
         catch(err) {
             app.showOutput("Background mode failed: " + err.message);
@@ -164,7 +164,7 @@ var app = {
     
     btConnectFailure: function() {
         app.showOutput("SHIT");
-        window.plugin.backgroundMode.disable();
+        cordova.plugins.backgroundMode.disable();
     },
     
     showOutput: function(op) {
