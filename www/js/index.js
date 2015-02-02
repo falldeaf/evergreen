@@ -143,11 +143,19 @@ var app = {
     
     btConnectSuccess: function() {
         bluetoothSerial.subscribe('\n', app.newData, app.btConnectFailure);
+        try {
+            window.plugin.backgroundMode.enable();
+        }
+        catch(err) {
+            app.showOutput("Background mode failed: " + err.message);
+        }
     },
     
     newData: function(data) {
         app.showOutput(" Newdata!:");
         app.showOutput(data);
+        navigator.notification.beep(1);
+        navigator.notification.vibrate(1);
     },
     
     lostConnection: function() {
@@ -156,6 +164,7 @@ var app = {
     
     btConnectFailure: function() {
         app.showOutput("SHIT");
+        window.plugin.backgroundMode.disable();
     },
     
     showOutput: function(op) {
