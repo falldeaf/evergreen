@@ -107,12 +107,20 @@ var app = {
         // Test Bluetooth Serial Plugin
         bluetoothSerial.isEnabled(
             function() { 
-                alert("Bluetooth is enabled");
+                //alert("Bluetooth is enabled");
             },
             function() { 
-                alert("Bluetooth is *not* enabled");
+                //alert("Bluetooth is *not* enabled");
             }
         );   
+        
+        var address = "5843 NW Drill Court";
+        window.plugins.webintent.startActivity({
+            action: window.plugins.webintent.ACTION_VIEW,
+            url: 'geo:0,0?q=' + address}, 
+            function() {}, 
+            function() {alert('Failed to open URL via Android Intent')};
+            );
         
         try {
             bluetoothSerial.connect("0C:1E:08:0F:32:23", app.btConnectSuccess, app.btConnectFailure);
