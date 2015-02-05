@@ -114,13 +114,19 @@ var app = {
             }
         );   
         
-        var address = "5843 NW Drill Court";
-        window.plugins.webintent.startActivity({
-            action: window.plugins.webintent.ACTION_VIEW,
-            url: 'geo:0,0?q=' + address}, 
-            function() {}, 
-            function() {alert('Failed to open URL via Android Intent')};
+        try {
+            var address = "5843 NW Drill Court";
+            window.plugins.webintent.startActivity({
+                action: window.plugins.webintent.ACTION_VIEW,
+                url: 'geo:0,0?q=' + address}, 
+                function() {}, 
+                function() {alert('Failed to open URL via Android Intent')};
             );
+
+        }
+        catch(err) {
+            app.showOutput(err.message);
+        }
         
         try {
             bluetoothSerial.connect("0C:1E:08:0F:32:23", app.btConnectSuccess, app.btConnectFailure);
