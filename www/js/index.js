@@ -115,6 +115,7 @@ var app = {
         );   
         
         try {
+            app.showOutput("Sending intent!");
             var address = "5843 NW Drill Court";
             window.plugins.webintent.startActivity({
                 action: window.plugins.webintent.ACTION_VIEW,
