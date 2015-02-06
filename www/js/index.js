@@ -114,16 +114,6 @@ var app = {
             }
         );   
         
-        app.showOutput("Sending intent!");
-        var address = "5843 NW Drill Court";
-        window.plugins.webintent.startActivity({
-            action: window.plugins.webintent.ACTION_VIEW,
-            url: 'geo:0,0?q=' + address}, 
-            function() {}, 
-            function() {alert('Failed to open URL via Android Intent')};
-        );
-
-        
         try {
             bluetoothSerial.connect("0C:1E:08:0F:32:23", app.btConnectSuccess, app.btConnectFailure);
         }
@@ -181,4 +171,16 @@ var app = {
         var div = document.getElementById('output');
         div.innerHTML = div.innerHTML + op;        
     }
+
 };
+
+
+function testWebIntent() {
+    address = "1600+Amphitheatre+Parkway%2C+CA" ;
+    window.plugins.webintent.startActivity({
+        action: window.plugins.webintent.ACTION_VIEW,
+        url: 'geo:0,0?q=' + address}, 
+        function() {alert('success')}, 
+        function() {alert('Failed to open URL via Android Intent')}
+    );		        
+}
