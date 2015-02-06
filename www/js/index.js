@@ -114,7 +114,7 @@ var app = {
             }
         );   
         
-        
+        /*
         app.showOutput("Preparing to try intent");
         try {
             app.showOutput("Sending intent!");
@@ -129,7 +129,7 @@ var app = {
         }
         catch(err) {
             app.showOutput(err.message);
-        }
+        }*/
         
         try {
             bluetoothSerial.connect("0C:1E:08:0F:32:23", app.btConnectSuccess, app.btConnectFailure);
