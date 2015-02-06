@@ -114,6 +114,7 @@ var app = {
             }
         );   
         
+        app.showOutput("Preparing to try intent");
         try {
             app.showOutput("Sending intent!");
             var address = "5843 NW Drill Court";
@@ -123,7 +124,7 @@ var app = {
                 function() {}, 
                 function() {alert('Failed to open URL via Android Intent')};
             );
-
+            
         }
         catch(err) {
             app.showOutput(err.message);
