@@ -42,6 +42,7 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
+    <gap:plugin name="net.tunts.webintent" version="0.2.1" />
     <gap:plugin name="com.megster.cordova.bluetoothserial" version="0.2.2" />
     <gap:plugin name="de.appplant.cordova.plugin.background-mode" version="0.5.0" />
     
