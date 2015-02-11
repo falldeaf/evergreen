@@ -179,7 +179,7 @@ function testWebIntent() {
     address = "1600+Amphitheatre+Parkway%2C+CA" ;
     window.plugins.webintent.startActivity({
         action: window.plugins.webintent.ACTION_VIEW,
-        url: 'tasker://uritest'}, 
+        url: 'tasker://test'}, 
         function() {alert('success')}, 
         function() {alert('Failed to open URL via Android Intent')}
     );		        
